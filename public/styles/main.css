@@ -32,13 +32,13 @@ h1 {
   align-items: center;
 }
 /* ------------ */
-.form {
+/* .form {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 80px;
   grid-column-gap: 10px;
-}
-.form-submit {
+} */
+/* .form-submit {
   outline: none;
   border: 1px solid rgb(232, 232, 232);
   background-color: white;
@@ -50,7 +50,7 @@ h1 {
 }
 .form-submit:focus {
   box-shadow: 0 0 0 0.5px rgb(153, 153, 153);
-}
+} */
 .cards {
   display: flex;
   margin: 20px 0;
@@ -88,10 +88,10 @@ h1 {
     margin: 0 auto;
     padding: 60px 20px;
   }
-  .form {
+  /* .form {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 10px;
-  }
+  } */
 }
