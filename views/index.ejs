@@ -6,57 +6,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/styles/main.css">
   <title>I'm Bored</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
-  <div class="container">
-    <h1>Let's find something for you to do ✌️</h1>
+  <div class="containera">
+    <h1>Let's find if your car is allowed to drive ✌️</h1>
 
     <form action="/" id="form" class="form" method="POST">
-      <select name="type" class="form-select">
-        <option value="" data-display="Select">Random type</option>
-        <option value="education">Education</option>
-        <option value="charity">Charity</option>
-        <option value="recreational">Recreational</option>
-        <option value="relaxation">Relaxation</option>
-        <option value="busywork">Busywork</option>
-        <option value="social">Social</option>
-        <option value="diy">DIY</option>
-        <option value="music">Music</option>
-      </select>
-      <select name="participants" class="form-select">
-        <option value="">Any number of people</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-      <button type="submit" class="form-submit">Go</button>
-    </form>
-    <section id="cards" class="cards">
-      <article class="card-item">
-        <h2 class="card-activity">
-          <!-- Show Activity -->
-        </h2>
-        <div class="card-info">
-          <span class="card-type">
-            <!-- Show Activity type -->
-          </span>
-          <span class="card-participants">
-            <!-- participants: Show participant number -->
-            <span class="card-number"></span>
-          </span>
-        </div>
-      </article>
-
-
-      <div id="tag-error" class="tag-error">
-        <!-- Show any errors that were sent from the backend -->
+      <div class="form-group">
+        <label for="car_number">Car Number</label>
+        <input name="carNumber" type="text" class="form-control" id="car_number" aria-describedby="carNumberHelp"
+          placeholder="Enter car number">
+        <small id="carNumberHelp" class="form-text text-muted">Check if the car is canceled</small>
       </div>
+    
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
+
+
+    <section id="cards" class="cards">
+      <%if (locals.data) {%>
+
+        <article class="card-item">
+          <h2 class="card-activity">
+            <%=data.tozeret_nm %>
+          </h2>
+          <div class="card-info">
+            <span class="card-type">
+              <%=data.bitul_dt%>
+            </span>
+            <span class="card-participants">
+              participants: <%= data.mispar_manoa%>
+                <span class="card-number"></span>
+            </span>
+          </div>
+        </article>
+
+        <%}%>
+
+
+          <%if (locals.error) {%>
+            <div id="tag-error" class="tag-error">
+              <%=error%>
+            </div>
+            <%}%>
     </section>
   </div>
 
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
