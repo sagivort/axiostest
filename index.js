@@ -10,13 +10,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
   try {
-    const response = await axios.get("https://bored-api.appbrewery.com/random");
-    const result = response.data;
-    console.log(result);
-    res.render("solution.ejs", { data: result });
+    res.render("index.ejs", { data: '' });
   } catch (error) {
     console.error("Failed to make request:", error.message);
-    res.render("solution.ejs", {
+    res.render("index.ejs", {
       error: error.message,
     });
   }
@@ -24,20 +21,21 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   try {
-    console.log(req.body);
-    const type = req.body.type;
-    const participants = req.body.participants;
+    const carNumber = req.body.carNumber;
+
+    
     const response = await axios.get(
-      `https://bored-api.appbrewery.com/filter?type=${type}&participants=${participants}`
+      `https://data.gov.il/api/3/action/datastore_search?resource_id=851ecab1-0622-4dbe-a6c7-f950cf82abf9&limit=5&q=${carNumber}`
     );
-    const result = response.data;
-    console.log(result);
-    res.render("solution.ejs", {
-      data: result[Math.floor(Math.random() * result.length)],
+
+    const result = response.data.result.records;
+    console.log(result[0]);
+    res.render("index.ejs", {
+      data: result[0],
     });
   } catch (error) {
     console.error("Failed to make request:", error.message);
-    res.render("solution.ejs", {
+    res.render("index.ejs", {
       error: "No activities that match your criteria.",
     });
   }
